@@ -133,6 +133,7 @@ export default async function webhook(
     bot?.open_id !== body?.event?.message?.mentions?.[0]?.id.open_id
   ) {
     return response.json({
+      code: 0,
       mention: false,
     })
   }
@@ -140,6 +141,7 @@ export default async function webhook(
   const eventId = body.header.event_id
   if (isDuplicateId(eventId)) {
     return response.json({
+      code: 0,
       retry: true,
     })
   }
@@ -148,6 +150,7 @@ export default async function webhook(
   await eventHandles[body.header.event_type]?.(body, { client, app })
 
   return response.json({
+    code: 0,
     done: true,
   })
 }
