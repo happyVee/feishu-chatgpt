@@ -2,6 +2,7 @@ import { reply } from '../lib/reply'
 
 export default {
   'im.message.receive_v1': async (body: any, { client, app }) => {
+    console.log("im.message.receive_v1")
     const message = body.event.message
     const text = JSON.parse(message.content).text.replace('@_user_1', '').trim()
     const answer = await reply([
@@ -20,5 +21,6 @@ export default {
         msg_type: 'text',
       },
     })
+    console.log("im.message.receive_v1 done")
   },
 }
