@@ -147,7 +147,7 @@ export default async function webhook(
   }
 
   // 事件列表见：https://open.feishu.cn/document/ukTMukTMukTM/uYDNxYjL2QTM24iN0EjN/event-list
-  eventHandles[body.header.event_type]?.(body, { client, app })
+  await eventHandles[body.header.event_type]?.(body, { client, app })
 
   return response.json({
     code: 0,
